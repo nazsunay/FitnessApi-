@@ -4,7 +4,7 @@ using FitnessApi.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
 
 namespace FitnessApi.Controllers
 {
@@ -42,14 +42,14 @@ namespace FitnessApi.Controllers
             
             var data = _context.Users.Find(id);
 
-            if (data != null)  // Kullanıcı varsa güncelle
+            if (data != null)  
             {
                 data.Name = model.Name;
                 data.Surname = model.Surname;
                 data.Email = model.Email;
                 _context.Update(data);
             }
-            else  // yoksa kullanıcı ekle
+            else  
             {
                 var newUser = new User
                 {
@@ -111,7 +111,7 @@ namespace FitnessApi.Controllers
             // İlgili tarih için giriş işlemlerini alıyoruz.
             var entries = await _context.UserPrograms
                 .Where(up => up.CreatedDate.Date == date.Date)
-                .OrderByDescending(up => up.CreatedDate) // En son işlem en üstte
+                .OrderByDescending(up => up.CreatedDate) 
                 .Select(up => new
                 {
                     UserName = up.User.Name,
