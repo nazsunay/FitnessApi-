@@ -44,7 +44,7 @@ namespace FitnessApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            // Veritabanı için Program nesnesi oluşturma
+           
             var program = new Programs
             {
                 Name = programDto.Name,
@@ -56,7 +56,7 @@ namespace FitnessApi.Controllers
             _context.Programs.Add(program);
             _context.SaveChanges();
 
-            // Başarıyla oluşturulan programın ID’siyle dönüyoruz.
+           
             return CreatedAtAction(nameof(GetProgramById), new { id = program.Id }, program);
         }
 
